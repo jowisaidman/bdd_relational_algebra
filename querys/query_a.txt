@@ -1,0 +1,4 @@
+director = (σ last_name = 'Spielberg' directors)
+movies_spielberg = ((director ⨝ directors.id =  movies_directors.director_id movies_directors) ⨝ movies_directors.movie_id = movies.id movies)
+π movies.name (σ movies.year < 2000 movies_spielberg)
+

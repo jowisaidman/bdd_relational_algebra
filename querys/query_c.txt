@@ -1,0 +1,4 @@
+director = (σ last_name = 'Bergman' directors) -- averiguo id bergman
+peliculas_bergman = (director ⨝ directors.id = movies_directors.director_id movies_directors) -- me quedo con id de las peliculas que dirigio
+actors_ids = π roles.actor_id (peliculas_bergman ⨝ movies_directors.movie_id = roles.movie_id roles) -- me quedo con el id de los actores que estuvieron en peliculas de bergman
+(actors_ids ⨝ roles.actor_id = actors.id actors)

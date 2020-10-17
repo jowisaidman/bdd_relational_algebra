@@ -1,0 +1,8 @@
+movies_genre1 = π movies_genres.id1 (ρ movies_genres.movie_id → id1 movies_genres)
+movies_genre2 = π movies_genres.id2 (ρ movies_genres.movie_id → id2 movies_genres)
+movies_genre3 = π movies_genres.id3 (ρ movies_genres.movie_id → id3 movies_genres)
+movies_genre_1_2 = movies_genre1 ⨯ movies_genre2
+movies_genre_1_2_3 = movies_genre_1_2 ⨯  movies_genre3
+movies_genre3_more_than_2_times = π movies_genres.id1 (σ movies_genres.id3=movies_genres.id2 ∧ movies_genres.id3=movies_genres.id1 ∧ movies_genres.id1=movies_genres.id2 movies_genre_1_2_3)
+π movies.name (movies_genre3_more_than_2_times ⨝ movies_genres.id1=movies.id movies) 
+

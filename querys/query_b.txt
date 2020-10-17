@@ -1,0 +1,5 @@
+movie_life_of_brian = (σ name = 'Life of Brian' movies) -- me quedo con el nombre de la pelicula para sacar el id
+actores_lob_aux = (π roles.actor_id (movie_life_of_brian ⨝ movies.id = roles.movie_id roles)) -- uno pelicula con roles para tener el id de todos los actores
+actores_lob = ρ roles.actor_id → ids actores_lob_aux -- renombro atributo relacion
+id_peliculas = π roles.movie_id (actores_lob ⨝ roles.ids = roles.actor_id roles) -- junto los id de actores nuevamente con sus ids para tener todos los roles de las demas peliculas y me quedo conn el id de esas peliculas 
+π movies.name (id_peliculas ⨝ roles.movie_id = movies.id movies) -- me quedo con el nombre de las peliculas

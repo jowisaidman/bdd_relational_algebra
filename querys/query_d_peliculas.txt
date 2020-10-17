@@ -1,0 +1,9 @@
+war_ids = π movies_genres.movie_id (σ genre = 'War' movies_genres)
+war_movies1 = π movies.year (war_ids ⨝ movies_genres.movie_id = movies.id movies)
+war_movies2 = ρ movies.year → year2 war_movies1
+war_movies_crossed = war_movies1 ⨯ war_movies2
+newer_movies = (σ movies.year>movies.year2 war_movies_crossed)
+years_newer_movies = π movies.year newer_movies
+oldest_movie_year = ρ movies.year → anio (war_movies1 - years_newer_movies)
+oldest_movies = (oldest_movie_year ⨝ movies.anio = movies.year movies)
+oldest_movies
